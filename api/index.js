@@ -4,9 +4,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import User from './models/user.model.js';
 
+// Učitaj .env fajl
 dotenv.config();
 
-// Connect to MongoDB
+// Povezivanje na MongoDB
 mongoose.connect(process.env.MONGO)
   .then(() => {
     console.log('Connected to Mongo DB');
@@ -17,35 +18,39 @@ mongoose.connect(process.env.MONGO)
 
 const app = express();
 
-// List of allowed origins
-const allowedOrigins = ['http://localhost:3001', 'http://localhost:3000', 'http://localhost:5173'];
+// Lista dozvoljenih izvora (origina)
+const allowedOrigins = [
+  'http://localhost:3001', // Lokalni frontend za razvoj
+  'http://localhost:3000', // Lokalni frontend za razvoj
+  'https://www.viatec.rs', // Tvoj frontend domen
+];
 
-// Dynamic CORS middleware
+// Dinamički CORS middleware
 app.use(cors({
   origin: (origin, callback) => {
-    console.log('Origin:', origin); // Debugging the origin
+    console.log('Origin:', origin); // Debugging origina
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow the origin
+      callback(null, true); // Dozvoli origin
     } else {
-      callback(new Error('Not allowed by CORS')); // Reject the origin
+      callback(new Error('Not allowed by CORS')); // Odbij origin
     }
   },
-  methods: ['GET', 'POST', 'OPTIONS'], // Ensure OPTIONS method is allowed
-  allowedHeaders: ['Content-Type'], // Allowed headers
+  methods: ['GET', 'POST', 'OPTIONS'], // Osiguraj da je metoda OPTIONS dozvoljena
+  allowedHeaders: ['Content-Type'], // Dozvoljeni zaglavlja
 }));
 
 // Pre-flight OPTIONS request handler
 app.options('*', cors());
 
-// Parse JSON request bodies
+// Parsiranje JSON tela zahteva
 app.use(express.json());
 
-// Route to handle user form submissions
+// Ruta za obradu slanja forme korisnika
 app.post('/api/users', async (req, res) => {
   try {
     const { username, lastName, email, dateOfBirth, phone, state, privacy } = req.body;
 
-    console.log(privacy)
+    console.log(privacy);
     if (!username || !lastName || !email || !dateOfBirth || !phone || !state) {
       return res.status(400).json({ message: 'All fields are required' });
     }
@@ -59,7 +64,7 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
-// Start the server
+// Startovanje servera
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
