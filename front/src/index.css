@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Satoshi-Light';
+  src: local('Satoshi-Light'), url(./fonts/Satoshi-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplayThin';
+  src: local('NeueHaasDisplayThin'), url(./fonts/NeueHaasDisplayThin.ttf) format("truetype");
+}
+
+* {
+  font-family: 'Satoshi-Light', sans-serif;
+}
+
+/* p, button {
+  font-family: 'NeueHaasDisplayThin', sans-serif;
+} */

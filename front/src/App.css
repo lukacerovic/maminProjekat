@@ -1,0 +1,304 @@
+@keyframes dropdownFadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.dropdown {
+  animation: dropdownFadeIn 0.7s ease-in-out;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Satoshi', sans-serif;
+  background-color: #ededed;
+}
+.App {
+  margin-bottom: 5vh;
+}
+
+h1 {
+  font-weight: bold;
+}
+.header {
+  color: #333;;
+  text-align: center;
+}
+.nav-list {
+  list-style: none; /* Ukloni standardne oznake liste */
+  padding: 0; /* Ukloni padding */
+  display: flex; /* Prikazi stavke u horizontalnom redu */
+  gap: 20px; /* Razmak između stavki */
+}
+
+.nav-list li {
+  position: relative; /* Omogućava da se pseudo-element pozicionira u odnosu na li */
+  cursor: pointer; /* Promeni pokazatelj kursora na pointer */
+}
+
+.nav-list li::after {
+  content: ""; /* Pseudo-element za liniju ispod teksta */
+  position: absolute; /* Pozicioniranje relativno na li */
+  left: 50%; /* Počni od centra */
+  bottom: -5px; /* Postavi malo ispod teksta */
+  width: 0; /* Početna širina linije */
+  height: 2px; /* Visina linije */
+  background-color: #6c2636; /* Boja linije */
+  transition: width 0.3s ease, left 0.3s ease; /* Animacija širine i pozicije */
+}
+
+.nav-list li:hover::after {
+  width: 100%; /* Povećaj širinu na 100% pri hoveru */
+  left: 0; /* Pomeri na levo */
+}
+
+
+.header .nav-list {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+}
+
+.hero-section {
+  position: relative;
+  background-image: url('../public/images/kontakt.jpeg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  color: white;
+  text-align: left;
+  overflow: hidden;
+}
+
+/* Dodaj sivkasti sloj samo na deo sa slikom */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Siva boja sa 50% providnosti */
+  border-radius: 40px; /* Isti border-radius kao glavni element */
+}
+
+.hero-section * {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-button {
+  background-color: white;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  align-self: start;
+}
+.concepts {
+  background-color: #dcdcdc;
+  border: 3px solid white;
+}
+
+
+
+
+.services-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+
+.services-titles {
+  flex: 1;
+  color: #333;
+  padding-right: 20px;
+}
+
+.mySwiper {
+  flex: 1; 
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.swiper-slide {
+  border-radius: 40px;
+  border: 3px solid white;
+  width:60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dcdcdc;
+  color: #333;
+  opacity: 0.5;
+  transform: scale(0.8);
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.swiper-slide-active {
+  width:100%;
+  background-color: #6c2636; /* Boja pozadine za aktivni slajd */
+  color: white;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.service-title {
+  color: #333;
+  transition: color 0.3s ease;
+  position: relative; /* Dodaj ovu liniju */
+}
+
+.service-title.active {
+  color: #000;
+  font-weight: bold;
+ 
+}
+
+.service-title {
+  position: relative;
+  cursor: pointer; 
+}
+
+.service-title::after {
+  content: ""; 
+  position: absolute; 
+  left: 50%; 
+  bottom: -5px; 
+  width: -10;
+  height: 2px; 
+  background-color: #181818;
+  transition: width 0.5s ease, left 0.5s ease; 
+}
+
+.service-title.active::after {
+  width: 100%;
+  left: 0;
+}
+
+
+
+
+
+
+
+.real-estate-section {
+  display: flex;
+  background: url('../public/images/kontakt.jpeg') center/cover no-repeat;
+  border-radius: 50px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+.image-background {
+  display: flex;
+  background-position: center;
+  background-size: cover;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  
+}
+.search-form {
+  text-align: center;
+  color: #181818;
+  backdrop-filter: blur(100px);
+  border-radius: 30px;
+}
+
+.search-form h3 {
+  font-weight: bold;
+  color: #fff;
+}
+
+.search-form p {
+  color: #fff;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-field label {
+  color: #fff;
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-field input[type="text"],
+.form-field input[type="date"],
+.form-field input[type="email"],
+.form-field input[type="tel"] {
+  background-color: rgba(255, 255, 255);
+}
+
+.form-field textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.search-button {
+  width: 90%;
+  padding: 10px;
+  background-color: #6c2636;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #ab485f;
+}
+
+/* Stilizacija za polja koja su jedno pored drugog */
+.form-field-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-field-row .form-field {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .form-field-row {
+    flex-direction: column;
+  }
+  .services-container .mySwiper {
+    height: 30vh !important;
+  }
+}
